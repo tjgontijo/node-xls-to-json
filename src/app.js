@@ -1,7 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const XLSX = require('xlsx');
-const { v4: uuidv4 } = require('uuid');
+import fs from 'fs';
+import path from 'path';
+import XLSX from 'xlsx';
+import { v4 as uuidv4 } from 'uuid';
 
 const directoryPath = './assets/planilhas';
 const allResults = [];
