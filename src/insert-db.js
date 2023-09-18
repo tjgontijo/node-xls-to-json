@@ -32,6 +32,7 @@ const createPlano = async (data) => {
         capacityImplementationStrategy,
         acquisitionImplementationStrategy,
         specificGoals,
+        resultIndicator,
       } = planoData;
 
       const plano = await prisma.plan.create({
@@ -48,6 +49,7 @@ const createPlano = async (data) => {
           governanceImplementationStrategy,
           capacityImplementationStrategy,
           acquisitionImplementationStrategy,
+          resultIndicator,
           specificGoals: {
             create: specificGoals.map(({ goalId, short_name, name, actions }) => ({
               goalId,
@@ -84,7 +86,7 @@ const createPlano = async (data) => {
       });
 
       // Aqui você pode imprimir informações sobre o plano criado
-      console.log('Plano criado:', plano);
+      console.log(`Plano ${plano.state}-${plano.thematicArea} exportado com sucesso!`);
     }
   } catch (error) {
     console.error('Erro ao criar o plano:', error.message);
