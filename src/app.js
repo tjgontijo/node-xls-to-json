@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const XLSX = require('xlsx');
+const { v4: uuidv4 } = require('uuid');
 
 const directoryPath = './assets/planilhas';
-const allResults = {};
+const allResults = [];
 const sheetName = 'Plano';
 
 fs.readdir(directoryPath, function (err, files) {
@@ -18,15 +19,24 @@ fs.readdir(directoryPath, function (err, files) {
       const workbook = XLSX.readFile(filePath);
       const sheet = workbook.Sheets[sheetName];
 
-      const generalInfo = {
+      const idPlanGenerate = uuidv4();
+
+      const resultEntry = {
+        "planId": idPlanGenerate,
         "Ano": sheet['M1'] ? sheet['M1'].v : null,
         "Estado": sheet['N1'] ? sheet['N1'].v : null,
         "Área Temática": sheet['A2'] ? sheet['A2'].v : null,
-        "Diagnóstico": sheet['B19'] ? sheet['B19'].v : null
+        "Diagnóstico": sheet['B19'] ? sheet['B19'].v : null,
+        "Justificativa": sheet['B20'] ? sheet['B20'].v : null,
+        "Meta Geral": sheet['B21'] ? sheet['B21'].v : null,
+        "Estrategia de Implementação": sheet['B23'] ? sheet['B23'].v : null,
+        "Estrategia de Implementação - Diagnóstico Detalhado": sheet['B25'] ? sheet['B25'].v : null,
+        "Estrategia de Implementação - Governança": sheet['B27'] ? sheet['B27'].v : null,
+        "Estrategia de Implementação - Desenvolvimento de Capacidade Institucional": sheet['B29'] ? sheet['B29'].v : null,
+        "Estrategia de Implementação - Aquisição": sheet['B31'] ? sheet['B31'].v : null,
+        "Metas Especificas": []
       };
 
-
-      const specificGoals = [];
       const mergedCellRange = 'B33:D50';
       const { s, e } = XLSX.utils.decode_range(mergedCellRange);
 
@@ -40,18 +50,17 @@ fs.readdir(directoryPath, function (err, files) {
             currentNumber = cell ? cell.v : null;
           } else if (cell && cell.v !== undefined && currentNumber !== null) {
             const entry = {
+              goalId: uuidv4(),
+              planId: idPlanGenerate,
               short_name: currentNumber,
               name: cell.v
             };
-            specificGoals.push(entry);
+            resultEntry["Metas Especificas"].push(entry);
           }
         }
       }
 
-      allResults[file] = {
-        "Informações Gerais": generalInfo,
-        "Metas Especificas": specificGoals
-      };
+      allResults.push(resultEntry);
     }
   });
 
@@ -60,4 +69,5 @@ fs.readdir(directoryPath, function (err, files) {
     if (err) throw err;
     console.log('Os dados foram salvos em output.json.');
   });
+
 });
