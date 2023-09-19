@@ -3,7 +3,7 @@ import path from 'path';
 import XLSX from 'xlsx';
 import { v4 as uuidv4 } from 'uuid';
 
-const directoryPath = './assets/planilhas';
+const directoryPath = './assets/planos';
 const allResults = [];
 const sheetName = 'Plano';
 
