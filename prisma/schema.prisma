@@ -11,15 +11,15 @@ model Plan {
   planId                            String         @id
   state                             String
   thematicArea                      String
-  diagnosis                         String
-  justification                     String
-  generalGoal                       String
-  implementationStrategy            String
-  diagnosticImplementationStrategy  String
-  governanceImplementationStrategy  String
-  capacityImplementationStrategy    String
-  acquisitionImplementationStrategy String
-  resultIndicator                   String
+  diagnosis                         String?
+  justification                     String?
+  generalGoal                       String?
+  implementationStrategy            String?
+  diagnosticImplementationStrategy  String?
+  governanceImplementationStrategy  String?
+  capacityImplementationStrategy    String?
+  acquisitionImplementationStrategy String?
+  resultIndicator                   String?
   year                              Int
   specificGoals                     SpecificGoal[]
 
@@ -29,8 +29,8 @@ model Plan {
 model SpecificGoal {
   goalId    String   @id
   planId    String
-  shortName String
-  name      String
+  shortName String?
+  name      String?
   actions   Action[]
   plan      Plan     @relation(fields: [planId], references: [planId])
 
@@ -39,9 +39,9 @@ model SpecificGoal {
 
 model Action {
   actionId     String       @id
-  actionNum    String
-  actionName   String
   goalId       String
+  actionNum    String?
+  actionName   String?
   specificGoal SpecificGoal @relation(fields: [goalId], references: [goalId])
   items        Item[]
 
@@ -49,22 +49,22 @@ model Action {
 }
 
 model Item {
-  itemId                      String @id
+  itemId                      String  @id
   actionId                    String
-  financedItem                String
-  itemDescription             String
-  senaspItemCode              String
-  institution                 String
-  expenseType                 String
-  plannedQuantity             Int
-  measurementUnit             String
-  plannedValue                Float
-  processIndicatorDescription String
-  processIndicatorFormula     String
-  periodicity                 String
-  pmspGoal                    String
-  pespGoal                    String
-  action                      Action @relation(fields: [actionId], references: [actionId])
+  financedItem                String?
+  itemDescription             String?
+  senaspItemCode              String?
+  institution                 String?
+  expenseType                 String?
+  plannedQuantity             Int?
+  measurementUnit             String?
+  plannedValue                Float?
+  processIndicatorDescription String?
+  processIndicatorFormula     String?
+  periodicity                 String?
+  pmspGoal                    String?
+  pespGoal                    String?
+  action                      Action  @relation(fields: [actionId], references: [actionId])
 
   @@map("items")
 }
