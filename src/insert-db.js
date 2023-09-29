@@ -86,13 +86,13 @@ const createPlano = async (data) => {
       });
 
       // Aqui você pode imprimir informações sobre o plano criado
-      console.log(`Plano ${plano.state}-${plano.thematicArea} exportado com sucesso!`);
+      //console.log(`Plano ${plano.state}-${plano.thematicArea} exportado com sucesso!`);
     }
   } catch (error) {
     console.error('Erro ao criar o plano:', error.message);
   }
 };
-
+console.log('Dados inseridos no Banco de Dados com sucesso')
 const main = async () => {
   const jsonData = readJSON();
   await createPlano(jsonData);
