@@ -8,7 +8,7 @@ async function resetDatabase() {
     await prisma.item.deleteMany({});
     await prisma.action.deleteMany({});
     await prisma.specificGoal.deleteMany({});
-    await prisma.plan.deleteMany({});
+    await prisma.plan.deleteMany({});    
 
     console.log('Banco de dados zerado com sucesso.');
   } catch (error) {
