@@ -5,20 +5,21 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node src/delete-db.js && node src/all.js && node src/insert-db.js"
+    "dev": "node src/delete-db.js && node src/all.js && node src/insert-db.js && node src/last_update.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "fs": "^0.0.1-security",
+    "prisma": "^5.4.1",
     "xlsx": "^0.18.5"
   },
   "dependencies": {
-    "@prisma/client": "^5.3.1",
+    "@prisma/client": "^5.4.1",
+    "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "node-cron": "^3.0.2",
-    "prisma": "^5.3.1",
     "uuid": "^9.0.1"
   }
 }
