@@ -68,3 +68,13 @@ model Item {
 
   @@map("items")
 }
+
+model UpdatePlan {
+  itemId       String   @id
+  year         Int      @default(2023)
+  state        String
+  thematicArea String
+  last_update  DateTime @db.Timestamptz(3)
+
+  @@map("update_plans")
+}
