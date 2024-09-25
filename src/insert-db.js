@@ -53,7 +53,7 @@ const createPlano = async (data) => {
           specificGoals: {
             create: specificGoals.map(({ goalId, short_name, name, actions }) => ({
               goalId,
-              shortName: short_name, // Correção na chave aqui
+              shortName: parseInt(short_name, 10),
               name,
               actions: {
                 create: actions.map(({ actionId, actionNum, actionName, items }) => ({

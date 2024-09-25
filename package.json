@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node src/delete-db.js && node src/all.js && node src/insert-db.js && node src/last_update.js"
+    "dev": "node src/delete-db.js && node src/create_json.js && node src/export_xlsx.js && node src/insert-db.js && node src/last_update.js"
   },
   "keywords": [],
   "author": "",

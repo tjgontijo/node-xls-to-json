@@ -49,7 +49,7 @@ async function insertIntoDatabase(files) {
   }
 }
 
-readDirRecursively('C:/Users/thiago.gontijo/OneDrive - MINISTERIO DA JUSTIÇA/Planilhas')
+readDirRecursively('C:/Users/thiago.gontijo/OneDrive - MINISTERIO DA JUSTIÇA/DSUSP/Planilhas')
   .then(files => insertIntoDatabase(files))
   .catch(err => {
     console.error('Erro:', err);

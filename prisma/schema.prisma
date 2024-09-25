@@ -29,7 +29,7 @@ model Plan {
 model SpecificGoal {
   goalId    String   @id
   planId    String
-  shortName String?
+  shortName Int?
   name      String?
   actions   Action[]
   plan      Plan     @relation(fields: [planId], references: [planId])
@@ -40,7 +40,7 @@ model SpecificGoal {
 model Action {
   actionId     String       @id
   goalId       String
-  actionNum    String?
+  actionNum    Int?
   actionName   String?
   specificGoal SpecificGoal @relation(fields: [goalId], references: [goalId])
   items        Item[]
